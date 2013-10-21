@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.tenderapp.com/spree-commerce-test/categories/ccc/discussions
+    body:
+      encoding: UTF-8
+      string: '{"public":"false","author_name":"Spree Integrator","author_email":"support@spreecommerce.com","title":"Item
+        out of stock","body":"This products requested in this order are not in stock.","skip_spam":true}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Accept:
+      - application/vnd.tender-v1+json
+      X-Tender-Auth:
+      - foobar
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/vnd.tender-v1+json; charset=utf-8
+      Date:
+      - Mon, 21 Oct 2013 17:50:51 GMT
+      Server:
+      - nginx/1.0.15
+      Status:
+      - 422 Unprocessable Entity
+      X-Runtime:
+      - '10'
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[["category_id","can''t be blank"]]'
+    http_version: 
+  recorded_at: Mon, 21 Oct 2013 17:50:52 GMT
+recorded_with: VCR 2.6.0

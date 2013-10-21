@@ -2,6 +2,6 @@ require 'rubygems'
 require 'bundler'
 
 Bundler.require(:default)
-require "./desk_endpoint"
+require "./tender_endpoint"
 
-run DeskEndpoint
+run TenderEndpoint

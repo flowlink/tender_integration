@@ -1,48 +1,44 @@
 {
-    "name": "desk",
-    "display": "Desk.com",
-    "description": "Consumes incoming notification messages and creates Desk.com cases from them",
-    "icon_url": "desk.png",
-    "help": "http://guides.spreecommerce.com/integration/desk_integration.html",
+    "name": "Tender Support",
+    "display": "Tender",
+    "description": "Consumes incoming notification messages and creates tenderapp.com discussions for them",
+    "icon_url": "tender.png",
+    "help": "http://guides.spreecommerce.com/integration/tender_integration.html",
     "services": [
         {
             "name": "import",
             "path": "/import",
-            "description": "Import new notifications to Desk.",
+            "description": "Import new notifications to Tender.",
             "requires": {
                 "parameters": [
                     {
-                        "name": "url",
-                        "description": "Destination Desk URL"
+                        "name": "domain",
+                        "description": "Destination Tender Domain"
                     },
                     {
-                        "name": "username",
-                        "description": "Desk Username/Email"
+                        "name": "api_key",
+                        "description": "Tender API Key"
                     },
                     {
-                        "name": "password",
-                        "description": "Desk Login Password"
+                        "name": "author_name",
+                        "description": "The name of the user that created the discussion"
                     },
                     {
-                        "name": "requester_name",
-                        "description": "The name that goes in the from field on the Desk case"
+                        "name": "author_email",
+                        "description": "The email of the user that created the discussion"
                     },
                     {
-                        "name": "requester_email",
-                        "description": "The email that goes in the from field on the Desk case"
+                        "name": "category_id",
+                        "description": "The ID of the category the discussion should be created under"
                     },
                     {
-                        "name": "to_email",
-                        "description": "The email the new case will be forwarded to"
-                    },
-                    {
-                        "name": "customer_email",
-                        "description": "The email used for the customer submitting the case"
+                        "name": "public",
+                        "description": "Is the discussion public? Must be either true or false."
                     }
                 ],
                 "humanizers": {
-                    "200": "Message was imported to Desk.",
-                    "500": "Message could not be imported to Desk."
+                    "200": "Message was imported to Tender.",
+                    "500": "Message could not be imported to Tender."
                 }
             },
             "recommends": {

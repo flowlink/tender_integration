@@ -1,104 +1,41 @@
 class Client
-  include HTTParty
-
-  attr_reader :config, :auth, :message, :payload, :customer_url
+  attr_reader :client, :config, :message, :payload
 
   def initialize(configuration, message, payload)
+    @client = Tender::Client.new(configuration['tender.domain'], configuration['tender.api_key'])
     @config = configuration
-    @auth = { username: configuration['desk.username'], password: configuration['desk.password'] }
     @message = message
     @payload = payload
   end
 
   def import
-    @customer_url = get_or_create_customer
-    create_case
+    create_discussion
   end
 
-  def create_case
-    options = {
-      headers: { 'Content-Type' => 'application/json' },
-      body: case_params.to_json,
-      basic_auth: auth
-    }
-    response = self.class.post("#{config['desk.url']}/api/v2/cases", options)
-    if validate_response(response)
-      response
-    end
-  end
-
-  def get_customer
-    options = {
-      basic_auth: auth,
-      body: { email: config['desk.customer_email'] }.to_json
-    }
-    response = self.class.get("#{config['desk.url']}/api/v2/customers/search", options)
-    if validate_response(response)
-      begin
-        response["_embedded"]["entries"].first["_links"]["self"]["href"]
-      rescue Exception => e
-        :customer_not_found
-      end
-    end
-  end
-
-  def create_customer
-    options = {
-      basic_auth: auth,
-      body: {
-        first_name: "Spree Commerce",
-        last_name: "Hub",
-        emails: [
-          {
-            type: "work",
-            value: config['desk.customer_email']
-          }
-        ]
-      }.to_json
-    }
-    response = self.class.post("#{config['desk.url']}/api/v2/customers", options)
-    if validate_response(response)
-      response["_links"]["self"]["href"]
-    end
+  def create_discussion
+    discussion = client.create_discussion(config['tender.category_id'],
+                                       public: config['tender.public'],
+                                       author_name: config['tender.author_name'],
+                                       author_email: config['tender.author_email'],
+                                       title: payload['subject'],
+                                       body: payload['description']
+                                      )
+    discussion if validate_response(discussion)
   end
 
   private
 
   def validate_response(response)
-    if response['message'].present?
-      raise ApiError, response['message']
-    else
+    case response.status
+    when 201
       true
+    when 401
+      raise ApiError, response.body
+    when 404
+      raise ApiError, "The request failed because the URL could not be found. Please ensure your Tender domain is correct."
+    else
+      raise ApiError, "An unknown error occured: #{response.body}"
     end
-  end
-
-  def case_params
-    {
-      type: 'email',
-      subject: payload['subject'],
-      message: message_params,
-      '_links' => {
-        customer: {
-          href: "#{customer_url}",
-          class: 'customer'
-        }
-      }
-    }
-  end
-
-  def message_params
-    {
-      direction: 'in',
-      to: config['desk.to_email'],
-      from: "#{config['desk.requester_name']} (#{config['desk.requester_email']})",
-      subject: payload['subject'],
-      body: payload['description']
-    }
-  end
-
-  def get_or_create_customer
-    customer = get_customer
-    customer == :customer_not_found ? create_customer : customer
   end
 end
 

@@ -1,16 +1,16 @@
 require 'endpoint_base'
 require_relative './lib/client'
 
-class DeskEndpoint < EndpointBase
+class TenderEndpoint < EndpointBase
   helpers Sinatra::JSON
 
   post '/import' do
     begin
       client = Client.new(@config, @message[:message], @message[:payload])
-      new_case = client.import
+      discussion = client.import
       code = 200
       result = { "message_id" => @message[:message_id], "notifications" => [ { "level" => "info",
-        "subject" => "Case created", "description" => "New Desk case '#{new_case['subject']}' created, priority: #{new_case['priority']}." } ] }
+        "subject" => "TenderApp Discussion Created", "description" => "New TenderApp discussion '#{discussion.body['title']}' created at #{discussion.body['html_href']}." } ] }
     rescue Exception => e
       code = 500
       result = { "error" => e.message, "trace" => e.backtrace.inspect }
