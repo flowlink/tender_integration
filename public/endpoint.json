@@ -1,5 +1,5 @@
 {
-    "name": "Tender Support",
+    "name": "tender",
     "display": "Tender",
     "description": "Consumes incoming notification messages and creates tenderapp.com discussions for them",
     "icon_url": "tender.png",
