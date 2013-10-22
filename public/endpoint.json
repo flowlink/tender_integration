@@ -21,11 +21,11 @@
                     },
                     {
                         "name": "author_name",
-                        "description": "The name of the user that created the discussion"
+                        "description": "The name that will be used when creating new discussions"
                     },
                     {
                         "name": "author_email",
-                        "description": "The email of the user that created the discussion"
+                        "description": "The email that will be used when creating new discussions"
                     },
                     {
                         "name": "category_id",
@@ -33,7 +33,7 @@
                     },
                     {
                         "name": "public",
-                        "description": "Is the discussion public? Must be either true or false."
+                        "description": "Should newly created discussions be public? Must be either true or false."
                     }
                 ],
                 "humanizers": {
