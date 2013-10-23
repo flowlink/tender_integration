@@ -1,4 +1,4 @@
-APP_ROOT = "/data/desk"
+APP_ROOT = "/data/tender"
 
 worker_processes 3
 working_directory APP_ROOT + "/current"
