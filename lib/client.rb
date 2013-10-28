@@ -18,7 +18,7 @@ class Client
                                        author_name: config['tender.author_name'],
                                        author_email: config['tender.author_email'],
                                        title: payload['subject'],
-                                       body: payload['description']
+                                       body: "@@@\n" + payload['description'] + "\n@@@"
                                       )
     discussion if validate_response(discussion)
   end
