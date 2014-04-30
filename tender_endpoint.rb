@@ -1,9 +1,9 @@
-require 'endpoint_base'
+require "sinatra"
+require "endpoint_base"
+
 require_relative './lib/client'
 
-class TenderEndpoint < EndpointBase
-  helpers Sinatra::JSON
-
+class TenderEndpoint < EndpointBase::Sinatra::Base
   post '/import' do
     begin
       client = Client.new(@config, @message[:message], @message[:payload])
