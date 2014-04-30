@@ -1,6 +1,6 @@
 source 'https://www.rubygems.org'
 
-gem 'endpoint_base', :git => 'git@github.com:spree/endpoint_base.git'
+gem 'endpoint_base', github: 'spree/endpoint_base'
 gem 'tender-api'
 
 group :test do
