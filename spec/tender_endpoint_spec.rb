@@ -42,7 +42,7 @@ describe TenderEndpoint do
       error_notification_payload['parameters'] = params
 
       VCR.use_cassette('error_notification_import') do
-        post '/import', error_notification_payload.to_json, auth
+        post '/create_ticket', error_notification_payload.to_json, auth
         last_response.status.should == 200
         last_response.body.should match "created at"
       end
@@ -52,7 +52,7 @@ describe TenderEndpoint do
       warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('warning_notification_import') do
-        post '/import', warning_notification_payload.to_json, auth
+        post '/create_ticket', warning_notification_payload.to_json, auth
         last_response.status.should == 200
         last_response.body.should match "created at"
       end
@@ -66,7 +66,7 @@ describe TenderEndpoint do
       warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_domain') do
-        post '/import', warning_notification_payload.to_json, auth
+        post '/create_ticket', warning_notification_payload.to_json, auth
         last_response.status.should == 500
         last_response.body.should =~ /ensure your Tender domain is correct/
       end
@@ -80,7 +80,7 @@ describe TenderEndpoint do
       warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_api_key') do
-        post '/import', warning_notification_payload.to_json, auth
+        post '/create_ticket', warning_notification_payload.to_json, auth
         last_response.status.should == 500
         last_response.body.should =~ /Invalid email\/password/
       end
@@ -94,7 +94,7 @@ describe TenderEndpoint do
       warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_category_id') do
-        post '/import', warning_notification_payload.to_json, auth
+        post '/create_ticket', warning_notification_payload.to_json, auth
         last_response.status.should == 500
         last_response.body.should =~ /can't be blank/
       end

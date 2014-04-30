@@ -4,7 +4,9 @@ require "endpoint_base"
 require_relative './lib/client'
 
 class TenderEndpoint < EndpointBase::Sinatra::Base
-  post '/import' do
+  endpoint_key ENV["ENDPOINT_KEY"]
+
+  post '/create_ticket' do
     begin
       discussion = Client.new(@config, @payload).create_discussion
 
