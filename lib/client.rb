@@ -1,22 +1,17 @@
 class Client
-  attr_reader :client, :config, :message, :payload
+  attr_reader :client, :config, :payload
 
-  def initialize(configuration, message, payload)
-    @client = Tender::Client.new(configuration['tender.domain'], configuration['tender.api_key'])
+  def initialize(configuration, payload)
+    @client = Tender::Client.new(configuration['tender_domain'], configuration['tender_api_key'])
     @config = configuration
-    @message = message
     @payload = payload
   end
 
-  def import
-    create_discussion
-  end
-
   def create_discussion
-    discussion = client.create_discussion(config['tender.category_id'],
-                                       public: config['tender.public'],
-                                       author_name: config['tender.author_name'],
-                                       author_email: config['tender.author_email'],
+    discussion = client.create_discussion(config['tender_category_id'],
+                                       public: config['tender_public'],
+                                       author_name: config['tender_author_name'],
+                                       author_email: config['tender_author_email'],
                                        title: payload['subject'],
                                        body: "@@@\n" + payload['description'] + "\n@@@"
                                       )

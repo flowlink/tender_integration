@@ -1,56 +1,69 @@
 require 'spec_helper'
 
 describe TenderEndpoint do
-  def auth
-    {'HTTP_X_AUGURY_TOKEN' => 'x123', "CONTENT_TYPE" => "application/json"}
+  let(:error_notification_payload) do
+    {
+      "subject" => "Invalid China Order",
+      "description" => "This order is shipping to China but was invalidly sent to PCH"
+    }
   end
 
-  def app
-    described_class
+  let(:warning_notification_payload) do
+    {
+      "subject" => "Item out of stock",
+      "description" => "This products requested in this order are not in stock."
+    }
   end
 
-  let(:error_notification_payload) { { "message" => "notification:error", "message_id" => "518726r84910515003", "payload" => { "subject" => "Invalid China Order", "description" => "This order is shipping to China but was invalidly sent to PCH" } } }
-  let(:warning_notification_payload) { { "message" => "notification:warn", "message_id" => "518726r84910515004", "payload" => { "subject" => "Item out of stock", "description" => "This products requested in this order are not in stock." } } }
-  let(:info_notification_payload) { { "message" => "notification:info", "message_id" => "518726r84910515005", "payload" => { "subject" => "Order Received", "description" => "You have received an order." } } }
+  let(:info_notification_payload) do
+    {
+      "subject" => "Order Received",
+      "description" => "You have received an order."
+    }
+  end
 
   let(:params) do
-      [ { 'name' => 'tender.api_key', 'value' => 'foobar' },
-      { 'name' => 'tender.domain', 'value' => 'spree-commerce-test' },
-      { 'name' => 'tender.author_name', 'value' => 'Spree Integrator' },
-      { 'name' => 'tender.author_email', 'value' => 'support@spreecommerce.com' },
-      { 'name' => 'tender.category_id', 'value' => '77782' },
-      { 'name' => 'tender.public', 'value' => 'false' } ]
+    {
+      'tender_api_key' => 'foobar',
+      'tender_domain' => 'spree-commerce-test',
+      'tender_author_name' => 'Spree Integrator',
+      'tender_author_email' => 'support@spreecommerce.com',
+      'tender_category_id' => '77782',
+      'tender_public' => 'false'
+    }
   end
 
   context "when the tender domain is valid" do
-    before(:each) { params.push({'name' => 'tender.domain', 'value' => 'spree-commerce-test'}) }
+    before(:each) do
+      params.merge!('tender_domain' => 'spree-commerce-test')
+    end
 
     it "should respond to POST error notification import" do
-      error_notification_payload['payload']['parameters'] = params
+      error_notification_payload['parameters'] = params
 
       VCR.use_cassette('error_notification_import') do
         post '/import', error_notification_payload.to_json, auth
         last_response.status.should == 200
-        last_response.body.should match /TenderApp Discussion Created/
+        last_response.body.should match "created at"
       end
     end
 
     it "should respond to POST warning notification import" do
-      warning_notification_payload['payload']['parameters'] = params
+      warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('warning_notification_import') do
         post '/import', warning_notification_payload.to_json, auth
         last_response.status.should == 200
-        last_response.body.should match /TenderApp Discussion Created/
+        last_response.body.should match "created at"
       end
     end
   end
 
   context "when the tender domain is invalid" do
-    before(:each) { params.push({'name' => 'tender.domain', 'value' => 'invaliddomain'}) }
+    before(:each) { params.merge!('tender_domain'=> 'invaliddomain') }
 
     it "raises an error" do
-      warning_notification_payload['payload']['parameters'] = params
+      warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_domain') do
         post '/import', warning_notification_payload.to_json, auth
@@ -61,10 +74,10 @@ describe TenderEndpoint do
   end
 
   context "when the api key is invalid" do
-    before(:each) { params.push({'name' => 'tender.api_key', 'value' => 'invalidkey'}) }
+    before(:each) { params.merge!('tender_api_key' => 'invalidkey') }
 
     it "raises an error" do
-      warning_notification_payload['payload']['parameters'] = params
+      warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_api_key') do
         post '/import', warning_notification_payload.to_json, auth
@@ -75,10 +88,10 @@ describe TenderEndpoint do
   end
 
   context "when the category id is invalid" do
-    before(:each) { params.push({'name' => 'tender.category_id', 'value' => 'ccc'}) }
+    before(:each) { params.merge!('tender_category_id' => 'ccc') }
 
     it "raises an error" do
-      warning_notification_payload['payload']['parameters'] = params
+      warning_notification_payload['parameters'] = params
 
       VCR.use_cassette('invalid_category_id') do
         post '/import', warning_notification_payload.to_json, auth

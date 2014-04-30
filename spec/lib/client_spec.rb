@@ -3,30 +3,36 @@ require 'spec_helper'
 describe Client do
   let(:configuration) do
     {
-      'tender.api_key'      => 'foobar',
-      'tender.domain'       => 'spree-commerce-test',
-      'tender.author_name'  => 'Spree Integrator',
-      'tender.author_email' => 'hub@spreecommerce.com',
-      'tender.category_id'  => '77782',
-      'tender.public'       => 'false'
+      'tender_api_key'      => 'foobar',
+      'tender_domain'       => 'spree-commerce-test',
+      'tender_author_name'  => 'Spree Integrator',
+      'tender_author_email' => 'hub@spreecommerce.com',
+      'tender_category_id'  => '77782',
+      'tender_public'       => 'false'
     }
   end
-  let(:message) { { "message" => "notification:error", "message_id" => "518726r84910515003", "payload" => { "subject" => "Invalid China Order", "description" => "This order is shipping to China but was invalidly sent to PCH" } } }
+
+  let(:message) do
+    {
+      "subject" => "Invalid China Order",
+      "description" => "This order is shipping to China but was invalidly sent to PCH"
+    }
+  end
 
   subject do
-    Client.new(configuration, message['message'], message['payload'])
+    Client.new(configuration, message)
   end
 
   describe "#import" do
     it "should call create_dicussion" do
       Client.any_instance.should_receive(:create_discussion)
-      subject.import
+      subject.create_discussion
     end
 
     it "returns the newly created discussion" do
       VCR.use_cassette('create_discussion') do
-        discussion = subject.import
-        discussion.body['title'].should == message['payload']['subject']
+        discussion = subject.create_discussion
+        discussion.body['title'].should == message['subject']
         discussion.status.should == 201
       end
     end
@@ -43,7 +49,7 @@ describe Client do
     it "returns the newly created discussion if the response is valid" do
       VCR.use_cassette('create_discussion') do
         discussion = subject.create_discussion
-        discussion.body['title'].should == message['payload']['subject']
+        discussion.body['title'].should == message['subject']
         discussion.status.should == 201
       end
     end
