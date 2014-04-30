@@ -7,6 +7,8 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', github: 'spree/endpoint_base'
 gem 'tender-api'
 
+gem 'honeybadger'
+
 group :test do
   gem 'vcr'
   gem 'rspec', '2.11.0'
