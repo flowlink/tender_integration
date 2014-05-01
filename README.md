@@ -3,6 +3,8 @@ Tender Endpoint
 
 ## Services
 
+[Tender](http://tenderapp.com/) is a Better, Simpler, Customer Support Software.
+
 #### Connection parameters
 
 | Name | Value | Example |
