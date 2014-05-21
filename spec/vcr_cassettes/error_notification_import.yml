@@ -5,9 +5,9 @@ http_interactions:
     uri: https://api.tenderapp.com/spree-commerce-test/categories/77782/discussions
     body:
       encoding: UTF-8
-      string: '{"public":"false","author_name":"Spree Integrator","author_email":"support@spreecommerce.com","title":"Invalid
-        China Order","body":"This order is shipping to China but was invalidly sent
-        to PCH","skip_spam":true}'
+      string: '{"public":"false","author_name":"Wombat","author_email":"hub@spreecommerce.com","title":"Invalid
+        China Order","body":"@@@\nThis order is shipping to China but was invalidly
+        sent to PCH\n@@@","skip_spam":true}'
     headers:
       User-Agent:
       - Faraday v0.8.8
@@ -29,27 +29,25 @@ http_interactions:
       Content-Type:
       - application/vnd.tender-v1+json; charset=utf-8
       Date:
-      - Mon, 21 Oct 2013 17:50:05 GMT
+      - Wed, 21 May 2014 13:55:45 GMT
       Location:
-      - http://api.tenderapp.com/spree-commerce-test/discussions/12555817
+      - http://api.tenderapp.com/spree-commerce-test/discussions/13828162
       Server:
       - nginx/1.0.15
       Status:
       - 201 Created
       X-Runtime:
-      - '1253'
+      - '884'
       Content-Length:
-      - '2375'
+      - '2377'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"toggle_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/toggle","comments":[{"user_agent":null,"formatted_body":"<div><p>This
-        order is shipping to China but was invalidly sent to\nPCH</p></div>","user_is_supporter":false,"author_name":"Spree
-        Integrator","resolution":null,"referrer":null,"body":"This order is shipping
-        to China but was invalidly sent to PCH","created_at":"2013-10-21T17:50:04Z","html_href":"https://spree-commerce-test.tenderapp.com/discussions/problems/18","author_email":"support@spreecommerce.com","via":"api","user_ip":null,"system_message":false,"assets":[],"number":1,"internal":false}],"last_author_name":null,"queue_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/queue?queue={queue_id}","last_comment_id":null,"last_author_email":null,"author_name":"Spree
-        Integrator","redirection_id":null,"last_updated_at":"2013-10-21T17:50:04Z","activity_filter_stamp":{},"unqueue_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/unqueue?queue={queue_id}","comments_count":0,"category_href":"http://api.tenderapp.com/spree-commerce-test/categories/77782","updated_at":"2013-10-21T17:50:04Z","unresponded":true,"unread":false,"state":"open","restore_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/restore","watchers_count":0,"permalink":"invalid-china-order","last_via":"web","unresolve_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/unresolve","private_body":null,"created_at":"2013-10-21T17:50:04Z","company_id":null,"html_href":"https://spree-commerce-test.tenderapp.com/discussions/problems/18","comments_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/comments{?page}","author_email":"support@spreecommerce.com","cached_queue_list":[],"acknowledge_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/acknowledge","cached_queue_list":[],"via":"api","title":"Invalid
-        China Order","spawned_from_comment_id":null,"resolve_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/resolve","href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817","hidden":false,"avg_response_time":null,"change_category_href":"http://api.tenderapp.com/spree-commerce-test/discussions/12555817/change_category?to={category_id}","public":false,"number":18,"last_user_id":null}'
+      string: '{"queue_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/queue?queue={queue_id}","author_email":"hub@spreecommerce.com","author_name":"Wombat","updated_at":"2014-05-21T13:55:44Z","title":"Invalid
+        China Order","number":32,"last_via":"web","cached_queue_list":[],"public":false,"avg_response_time":null,"unqueue_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/unqueue?queue={queue_id}","href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162","cached_queue_list":[],"category_href":"http://api.tenderapp.com/spree-commerce-test/categories/77782","unresponded":true,"created_at":"2014-05-21T13:55:44Z","activity_filter_stamp":{},"restore_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/restore","watchers_count":0,"state":"open","spawned_from_comment_id":null,"permalink":"invalid-china-order","unresolve_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/unresolve","company_id":null,"html_href":"https://spree-commerce-test.tenderapp.com/discussions/problems/32","comments_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/comments{?page}","comments":[{"author_email":"hub@spreecommerce.com","author_name":"Wombat","number":1,"internal":false,"assets":[],"body":"@@@\nThis
+        order is shipping to China but was invalidly sent to PCH\n@@@","system_message":false,"resolution":null,"created_at":"2014-05-21T13:55:44Z","html_href":"https://spree-commerce-test.tenderapp.com/discussions/problems/32","user_ip":null,"user_agent":null,"referrer":null,"user_is_supporter":false,"via":"api","formatted_body":"<div><pre>\n<code>This
+        order is shipping to China but was invalidly sent to PCH</code>\n</pre></div>"}],"last_comment_id":null,"acknowledge_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/acknowledge","last_author_name":null,"unread":false,"last_updated_at":"2014-05-21T13:55:44Z","hidden":false,"resolve_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/resolve","comments_count":0,"change_category_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/change_category?to={category_id}","last_author_email":null,"via":"api","private_body":null,"toggle_href":"http://api.tenderapp.com/spree-commerce-test/discussions/13828162/toggle","redirection_id":null,"last_user_id":null}'
     http_version: 
-  recorded_at: Mon, 21 Oct 2013 17:50:06 GMT
+  recorded_at: Wed, 21 May 2014 13:55:45 GMT
 recorded_with: VCR 2.6.0

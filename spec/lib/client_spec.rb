@@ -5,7 +5,7 @@ describe Client do
     {
       'tender_api_key'      => 'foobar',
       'tender_domain'       => 'spree-commerce-test',
-      'tender_author_name'  => 'Spree Integrator',
+      'tender_author_name'  => 'Wombat',
       'tender_author_email' => 'hub@spreecommerce.com',
       'tender_category_id'  => '77782',
       'tender_public'       => 'false'
@@ -40,7 +40,7 @@ describe Client do
 
   describe "#create_discussion" do
     it "raises an ApiError if the response is not valid" do
-      configuration['tender.api_key'] = 'invalidkey'
+      configuration['tender_api_key'] = 'invalidkey'
       VCR.use_cassette('invalid_create_discussion') do
         lambda { subject.create_discussion }.should raise_error(ApiError)
       end

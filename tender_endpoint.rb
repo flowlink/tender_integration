@@ -15,7 +15,7 @@ class TenderEndpoint < EndpointBase::Sinatra::Base
 
   post '/create_ticket' do
     begin
-      discussion = Client.new(@config, @payload).create_discussion
+      discussion = Client.new(@config, @payload[:ticket]).create_discussion
 
       code = 200
       msg = "New TenderApp discussion '#{discussion.body['title']}' created at #{discussion.body['html_href']}."

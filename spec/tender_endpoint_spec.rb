@@ -3,22 +3,28 @@ require 'spec_helper'
 describe TenderEndpoint do
   let(:error_notification_payload) do
     {
-      "subject" => "Invalid China Order",
-      "description" => "This order is shipping to China but was invalidly sent to PCH"
+      "ticket" => {
+        "subject" => "Invalid China Order",
+        "description" => "This order is shipping to China but was invalidly sent to PCH"
+      }
     }
   end
 
   let(:warning_notification_payload) do
     {
-      "subject" => "Item out of stock",
-      "description" => "This products requested in this order are not in stock."
+      "ticket" => {
+        "subject" => "Item out of stock",
+        "description" => "This products requested in this order are not in stock."
+      }
     }
   end
 
   let(:info_notification_payload) do
     {
-      "subject" => "Order Received",
-      "description" => "You have received an order."
+      "ticket" => {
+        "subject" => "Order Received",
+        "description" => "You have received an order."
+      }
     }
   end
 
@@ -26,8 +32,8 @@ describe TenderEndpoint do
     {
       'tender_api_key' => 'foobar',
       'tender_domain' => 'spree-commerce-test',
-      'tender_author_name' => 'Spree Integrator',
-      'tender_author_email' => 'support@spreecommerce.com',
+      'tender_author_name' => 'Wombat',
+      'tender_author_email' => 'hub@spreecommerce.com',
       'tender_category_id' => '77782',
       'tender_public' => 'false'
     }

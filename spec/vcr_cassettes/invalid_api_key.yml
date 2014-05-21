@@ -5,8 +5,9 @@ http_interactions:
     uri: https://api.tenderapp.com/spree-commerce-test/categories/77782/discussions
     body:
       encoding: UTF-8
-      string: '{"public":"false","author_name":"Spree Integrator","author_email":"support@spreecommerce.com","title":"Item
-        out of stock","body":"This products requested in this order are not in stock.","skip_spam":true}'
+      string: '{"public":"false","author_name":"Wombat","author_email":"hub@spreecommerce.com","title":"Item
+        out of stock","body":"@@@\nThis products requested in this order are not in
+        stock.\n@@@","skip_spam":true}'
     headers:
       User-Agent:
       - Faraday v0.8.8
@@ -28,13 +29,13 @@ http_interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Mon, 21 Oct 2013 17:47:54 GMT
+      - Wed, 21 May 2014 13:56:10 GMT
       Server:
       - nginx/1.0.15
       Status:
       - 401 Unauthorized
       X-Runtime:
-      - '14'
+      - '12'
       Content-Length:
       - '62'
       Connection:
@@ -43,5 +44,5 @@ http_interactions:
       encoding: UTF-8
       string: Invalid email/password for "spree-commerce-test.tenderapp.com"
     http_version: 
-  recorded_at: Mon, 21 Oct 2013 17:47:55 GMT
+  recorded_at: Wed, 21 May 2014 13:56:10 GMT
 recorded_with: VCR 2.6.0
