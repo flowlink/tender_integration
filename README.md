@@ -1,22 +1,11 @@
-Tender Endpoint
-===============
+# Tender Integration
 
-## Services
+This is a fully hosted and supported integration for use with the [Wombat](http://wombat.co) product. With this integration you can perform the following functions:
 
-[Tender](http://tenderapp.com/) is a Better, Simpler, Customer Support Software.
+* Create support tickets in Desk.com if there is an error notification in the hub
 
-#### Connection parameters
+[Wombat](http://wombat.co) allows you to connect to your own custom integrations.  Feel free to modify the source code and host your own version of the integration - or beter yet, help to make the official integration better by submitting a pull request!
 
-| Name | Value | Example |
-| :----| :-----| :------ |
-| tender_api_key | API key | foobar |
-| tender_domain | Domain | spree-commerce-test |
+![Wombat Logo](http://spreecommerce.com/images/wombat_logo.png)
 
-### Create tickets
-
-| Name | Value | Example |
-| :----| :-----| :------ |
-| tender_author_name | Author name | Spree |
-| tender_author_email | Author email | support@spreecommerce.com |
-| tender_category_id | Category Id | 77782 |
-| tender_public | Public discussion flag | false |
+This integration is 100% open source an licensed under the terms of the New BSD License.
