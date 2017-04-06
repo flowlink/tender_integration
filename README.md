@@ -2,7 +2,7 @@
 
 This is a fully hosted and supported integration for use with the [FlowLink](http://flowlink.io/) product. With this integration you can perform the following functions:
 
-* Create support tickets in Tenderapp.com if there is an error notification in Wombat
+* Create support tickets in Tenderapp.com if there is an error notification in FlowLink
 
 # About FlowLink
 
